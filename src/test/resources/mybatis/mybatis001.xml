@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="properties/mybatis.properties">
+    </properties>
+
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.hhx.mybatis.entity.User" alias="user"/>
+    </typeAliases>
+
+    <typeHandlers>
+    </typeHandlers>
+
+    <plugins>
+        <plugin interceptor="com.hhx.mybatis.plugin.Plugin001">
+            <property name="prop" value="this is a prop"/>
+        </plugin>
+    </plugins>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="org.apache.ibatis.transaction.managed.ManagedTransactionFactory"/>
+            <dataSource type="org.apache.ibatis.datasource.unpooled.UnpooledDataSourceFactory">
+                <property name="driver" value="${h2.driver}"/>
+                <property name="url" value="${h2.url}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mybatis/mapper/mapper001.xml"/>
+    </mappers>
+
+</configuration>
